@@ -1,12 +1,28 @@
 {
-  "presets": ["module:metro-react-native-babel-preset", "@babel/flow"],
+  "presets": [
+    "module:metro-react-native-babel-preset",
+    "@babel/flow",
+    ["@babel/preset-env", {"modules": false }]
+  ],
+  "env": {
+    "test": {
+      "presets": [["@babel/preset-env"], "@babel/preset-react"]
+    }
+  },
   "plugins": [
-    [
-      "@babel/plugin-proposal-decorators",
-      {
-        "legacy": true
+    ["module-resolver", {
+      "root": ["./src"],
+      "alias": {
+        "test": "./test",
+        "underscore": "lodash"
       }
-    ],
+    }],
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    "@babel/plugin-proposal-function-sent",
+    "@babel/plugin-proposal-export-namespace-from",
+    "@babel/plugin-proposal-numeric-separator",
+    "@babel/plugin-proposal-throw-expressions",
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
     [
       "@babel/plugin-transform-runtime",
       {

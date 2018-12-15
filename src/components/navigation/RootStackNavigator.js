@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator } from '@react-navigation/core';
 import { observer } from 'mobx-react/native';
 
 import { colors } from '../../utils/Styles';
