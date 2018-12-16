@@ -10,14 +10,12 @@
     }
   },
   "plugins": [
-    ["module-resolver", {
-      "root": ["./src"],
+    ["@babel/plugin-proposal-decorators", {
+      "legacy": true,
       "alias": {
-        "test": "./test",
-        "underscore": "lodash"
+        "^react-native$": "react-native-web"
       }
     }],
-    ["@babel/plugin-proposal-decorators", { "legacy": true }],
     "@babel/plugin-proposal-function-sent",
     "@babel/plugin-proposal-export-namespace-from",
     "@babel/plugin-proposal-numeric-separator",
