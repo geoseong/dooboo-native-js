@@ -4,7 +4,6 @@ import Button from '../Button';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
-import { shallow, render } from 'enzyme';
 
 describe('Button', () => {
   it('renders without crashing', () => {
@@ -13,28 +12,27 @@ describe('Button', () => {
     expect(rendered).toBeTruthy();
   });
 
-  describe('component test', () => {
-    const wrapper = shallow(
-      <Button />,
-    );
-
-    it('renders as expected', () => {
-      expect(wrapper).toMatchSnapshot();
-      wrapper.setProps({ filled: false });
-      expect(wrapper).toMatchSnapshot();
+  describe('Interaction', () => {
+    let count = 1;
+    const onClick = () => {
+      count++;
+    };
+  
+    let rendered;
+    let instance;
+    const component = <Button white={true} onClick={onClick}/>;
+  
+    beforeAll(() => {
+      rendered = renderer.create(component);
+      instance = rendered.root;
     });
-
-    it('simulate onPress', () => {
-      let cnt = 1;
-      const onPress = () => {
-        cnt++;
-      };
-
-      wrapper.setProps({ onPress: () => onPress()});
-      expect(wrapper).toMatchSnapshot();
-
-      wrapper.first().props().onPress();
-      expect(cnt).toBe(2);
+  
+    it('Simulate onClick', () => {
+      const button = instance.find(
+        (el: any) => el.type === 'button',
+      );
+      button.props.onClick();
+      expect(count).toBe(2);
     });
   });
 });

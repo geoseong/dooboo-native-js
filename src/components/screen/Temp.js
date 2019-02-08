@@ -14,21 +14,25 @@ import {
   InteractionManager,
 } from 'react-native';
 import { inject } from 'mobx-react/native';
+import styled from 'styled-components/native';
 
 import { ratio } from '../../utils/Styles';
 import {
   IC_MASK,
 } from '../../utils/Icons';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'transparent',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+import type {
+  ____ViewStyleProp_Internal as ViewStyle,
+  ____TextStyleProp_Internal as TextStyle,
+  ____ImageStyleProp_Internal as ImageStyle,
+} from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
+
+const Container = styled.View`
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
 
 type Props = {
 }
@@ -45,9 +49,9 @@ class Page extends Component<Props, State> {
 
   render() {
     return (
-      <View style={styles.container}>
+      <Container>
         <Text>Temporary Page</Text>
-      </View>
+      </Container>
     );
   }
 }

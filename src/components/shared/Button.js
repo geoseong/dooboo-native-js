@@ -14,33 +14,40 @@ import type {
   ____ImageStyleProp_Internal as ImageStyle,
 } from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
 
-import { ratio, colors } from '../../utils/Styles';
+import styled from 'styled-components/native';
 
-const styles = StyleSheet.create({
-  btn: {
-    backgroundColor: 'transparent',
-    alignSelf: 'center',
-    borderRadius: 4,
-    borderWidth: 2,
-    width: 320,
-    height: 52,
-    borderColor: 'white',
+const ButtonEnabled = styled.View`
+  background-color: transparent;
+  align-self: center;
+  border-radius: 4;
+  border-width: 2;
+  width: 320;
+  height: 52;
+  border-color: white;
 
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  btnDisabled: {
-    backgroundColor: 'rgb(243,243,243)',
-    alignSelf: 'center',
-    borderRadius: 4,
-    borderWidth: 2,
-    width: 320,
-    height: 52,
-    borderColor: '#333',
+  align-items: center;
+  justify-content: center;
+`;
 
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+const ButtonDisabled = styled.View`
+  background-color: rgb(243,243,243);
+  align-self: center;
+  border-radius: 4;
+  border-width: 2;
+  width: 320;
+  height: 52;
+  border-color: #333;
+
+  align-items: center;
+  justify-content: center;
+`;
+
+type Styles = {
+  txt: TextStyle,
+  imgLeft: ImageStyle,
+};
+
+const styles: Styles = StyleSheet.create({
   txt: {
     fontSize: 14,
     color: 'white',
@@ -75,7 +82,6 @@ class Button extends Component<Props, State> {
   static defaultProps: Props = {
     isLoading: false,
     isDisabled: false,
-    style: styles.btn,
     textStyle: styles.txt,
     imgLeftStyle: styles.imgLeft,
     indicatorColor: 'white',
@@ -85,16 +91,16 @@ class Button extends Component<Props, State> {
   render() {
     if (this.props.isDisabled) {
       return (
-        <View style={this.props.disabledStyle}>
+        <ButtonDisabled style={this.props.style}>
           <Text style={this.props.textStyle}>{this.props.children}</Text>
-        </View>
+        </ButtonDisabled>
       );
     }
     if (this.props.isLoading) {
       return (
-        <View style={this.props.style}>
+        <ButtonEnabled style={this.props.style}>
           <ActivityIndicator size='small' color={this.props.indicatorColor} />
-        </View>
+        </ButtonEnabled>
       );
     }
     return (
@@ -102,7 +108,7 @@ class Button extends Component<Props, State> {
         activeOpacity={this.props.activeOpacity}
         onPress={this.props.onPress}
       >
-        <View style={this.props.style}>
+        <ButtonEnabled style={this.props.style}>
           {
             this.props.imgLeftSrc
               ? <Image
@@ -112,7 +118,7 @@ class Button extends Component<Props, State> {
               : null
           }
           <Text style={this.props.textStyle}>{this.props.children}</Text>
-        </View>
+        </ButtonEnabled>
       </TouchableOpacity>
     );
   }

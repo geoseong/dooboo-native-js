@@ -34,7 +34,7 @@ interface Icolors {
 }
 
 export const colors: Icolors = {
-  background: '#e3e3e3',
+  background: 'rgb(254, 252, 250)',
   dodgerBlue: 'rgb(58,139,255)',
   dusk: 'rgb(65,77,107)',
   blueyGray: 'rgb(134,154,183)',

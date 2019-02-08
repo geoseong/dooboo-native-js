@@ -4,14 +4,18 @@ import SwitchNavigator from './components/navigation/SwitchNavigator';
 import { Provider } from 'mobx-react';
 import { observer } from 'mobx-react/native';
 import appStore from './stores/appStore';
+import { ThemeProvider } from 'styled-components/native';
+import theme from './theme';
 
 class App extends React.Component {
   render() {
     return (
       <Provider store={ appStore }>
-        <View style={styles.container}>
-          <SwitchNavigator />
-        </View>
+        <ThemeProvider theme={theme}>
+          <View style={styles.container}>
+            <SwitchNavigator />
+          </View>
+        </ThemeProvider>
       </Provider>
     );
   }
